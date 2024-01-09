@@ -37,14 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Vérification si la case CGU a bien été cocher 
-    if (isset($_POST["cgu"]) && $_POST["cgu"] == "on") {
-        // Les CGU ont été acceptées
-        echo "Les CGU ont été acceptées. Traitement du formulaire...";
-        // Ajoutez ici le code pour traiter le formulaire
-    } else {
-        // Les CGU n'ont pas été acceptées
+    if (!isset($_POST["cgu"]) && $_POST["cgu"] == "on") {
+       
         $errors['cgu'] = "Veuillez accepter les CGU pour continuer.";
-    }
+     
+    } 
 
 
     // Affichage des erreurs
