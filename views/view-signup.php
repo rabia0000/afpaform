@@ -33,7 +33,7 @@
                 <div class="card-body ">
                     <h2 class="card-title text-center mb-4">Inscription</h2>
 
-                    <form action="controller-signup.php" method="POST">
+                    <form action="controller-signup.php" method="POST" novalidate>
                     <label for="nom">Nom:</label><br>
                     <input type="text" id="nom" name="nom" value = "<?= isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '' ?>">
                     <span class="error">
