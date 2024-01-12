@@ -1,4 +1,5 @@
 <?php
+require_once('../connect.php');
 // Vérification des données postées depuis le formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
@@ -17,6 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['prenom'] = "Le nom est invalide.";
     }
 
+    if(empty($_POST["pseudo"])){
+        $errors['pseudo'] ="pseudo obligatoire.";
+    }
+
     // Vérification de l'email
     if (empty($_POST["email"])) {
         $errors['email'] = "Champs obligatoire.";
@@ -27,6 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérification de la date de naissance
     if (empty($_POST["dob"])) {
         $errors['dob'] = "La date de naissance est obligatoire.";
+    } else {
+        // Ajout de la date de naissance
+        $dob = $_POST["dob"];
     }
 
     // Vérification du mot de passe
@@ -37,12 +45,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Vérification si la case CGU a bien été cocher 
-    // $cgu = $_POST["cgu"];
-    if (!isset($_POST["cgu"]) && !$_POST["cgu"] == "on") {
+   
+    if (!isset($_POST["cgu"])) {
        
         $errors['cgu'] = "Veuillez accepter les CGU pour continuer.";
-     
+    
     } 
+
+    if (!empty($errors['cgu'])) {
+        echo $errors['cgu'];
+    }
+    
+    $sql = 'INSERT INTO userprofil (user_name, user_firstname, user_pseudo, user_email, user_dateofbirth, user_password) VALUES (:nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe)';
+    $query = $bdd->prepare($sql);
+    $query->bindParam(':nom', $nom);
+    $query->bindParam(':prenom', $prenom);
+    $query->bindParam(':pseudo', $pseudo);
+    $query->bindParam(':email', $email);
+    $query->bindParam(':ddn', $dob);
+    $query->bindParam(':mot_de_passe', $mot_de_passe);
+
+    try {
+        $query->execute();
+        echo 'Utilisateur ajouté avec succès !';
+    } catch (PDOException $e) {
+        echo 'Erreur : ' . $e->getMessage();
+    }
+} else {
+    // Redirection vers le formulaire si la requête n'est pas de type POST
+    header("Location: view-signup.php");
+    exit;
+}
+  
+   
 
 
     // Affichage des erreurs
@@ -51,8 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Afficher la synthèse des informations et le message de confirmation
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
+        $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
         $dob = $_POST['dob'];
+       
 
         // Cacher le formulaire
         $formHidden = true;
@@ -66,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include('../views/view-summary.php');
         exit; // Arrêter l'exécution du script
     }
-}
+
 ?>
 <?php
 // Contrôleur - Gestion de la logique métier

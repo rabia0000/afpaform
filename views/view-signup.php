@@ -28,7 +28,7 @@
     </header>
 <div class="container ">
     <div class="row justify-content-center align-item-center">
-        <div class="col-md-6 ">
+        <div class="col-md-6 h-75">
             <div class="card shadow-lg">
                 <div class="card-body ">
                     <h2 class="card-title text-center mb-4">Inscription</h2>
@@ -40,7 +40,7 @@
                     <?php if (isset($errors['nom'])) {
                     echo $errors['nom'];
                     } ?>
-        </span><br><br>
+        </span><br>
 
         <label for="prenom">Prénom:</label><br>
         <input type="text" id="prenom" name="prenom" value = "<?= isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '' ?>">
@@ -48,7 +48,15 @@
             <?php if (isset($errors['prenom'])) {
                 echo $errors['prenom'];
             } ?>
-        </span><br><br>
+        </span><br>
+
+        <label for="pseudo">Pseudo:</label><br>
+        <input type="text" id="prenom" name="pseudo" value = "<?= isset($_POST['pseudo']) ? htmlspecialchars($_POST['pseudo']) : '' ?>">
+        <span class="error">
+            <?php if (isset($errors['pseudo'])) {
+                echo $errors['pseudo'];
+            } ?>
+        </span><br>
 
         <label for="email">Courriel:</label><br>
         <input type="email" id="email" name="email" value = "<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
@@ -56,7 +64,7 @@
             <?php if (isset($errors['email'])) {
                 echo $errors['email'];
             } ?>
-        </span><br><br>
+        </span><br>
 
         <label for="dob">Date de naissance:</label><br>
         <input type="date" id="dob" name="dob" value = "<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
@@ -64,7 +72,7 @@
             <?php if (isset($errors['dob'])) {
                 echo $errors['dob'];
             } ?>
-        </span><br><br>
+        </span><br>
 
         <label for="password">Mot de passe:</label><br>
         <input type="password" id="password" name="password">
@@ -72,7 +80,7 @@
             <?php if (isset($errors['password'])) {
                 echo $errors['password'];
             } ?>
-        </span><br><br>
+        </span><br>
 
         <label for="confirm_password">Confirmer le mot de passe:</label><br>
         <input type="password" id="confirm_password" name="confirm_password">
@@ -80,9 +88,17 @@
             <?php if (isset($errors['confirm_password'])) {
                 echo $errors['confirm_password'];
             } ?>
-        </span><br><br>
+        </span><br>
+    
+    <label for="select">Selectionnez une entreprise: </label><br>
+    <select name="select">
+    <option value="afpa" selected>Afpa</option>
+    <option value="carrefour">Carrefour</option>
+    </select>
+
+        </span><br>
         <div class = "row">
-        <label for="cgu" class="text-center text-bold">J'accepte les CGU : <input type="checkbox" name="cgu" id="cgu" required></label>
+        <label for="cgu" class=>J'accepte les CGU : <input type="checkbox" name="cgu" id="cgu" required></label>
         <div></div>
         
 
