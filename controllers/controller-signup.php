@@ -1,20 +1,26 @@
 <?php
 require_once('../connect.php');
 // Vérification des données postées depuis le formulaire
+// $_SERVER super globals affiche toute les informations nottaments resquest_method 
+    //declanche la logique 
+  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   // je créer un tableau d'erreur vide 
     $errors = [];
 
-    // Vérification du nom
-    if (empty($_POST["nom"])) {
-        $errors['nom'] = "Champs obligatoire.";
-    } else if (!preg_match("/^[a-zA-ZÀ-ÿ\-]+$/", $_POST["nom"])) {
-        $errors['nom'] = "Le nom est invalide.";
+    // Vérification du nom DOIT AVOIR LE MEME NAME QUE DANS LE VIEW-SIGNUP
+    if (empty($_POST["name"])) {
+        //arrayname["key"]= "value";
+        $errors['name'] = "Champs obligatoire.";
+    } else if (!preg_match("/^[a-zA-ZÀ-ÿ\-]+$/", $_POST["name"])) {
+        $errors['name'] = "Le nom est invalide.";
     }
 
     // Vérification du prénom
     if (empty($_POST["prenom"])) {
         $errors['prenom'] = "Champs obligatoire.";
-    } else if (!preg_match("/^[a-zA-ZÀ-ÿ\-]+$/", $_POST["nom"])) {
+        //si ça ne match pas !preg_match alors tableau d'erreur
+    } else if (!preg_match("/^[a-zA-ZÀ-ÿ\-]+$/", $_POST["prenom"])) {
         $errors['prenom'] = "Le nom est invalide.";
     }
 
@@ -44,6 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['password'] = "Le mot de passe doit comporter au moins 8 caractères et correspondre.";
     }
 
+    //veriffication du select 
+    if(!isset($_POST["enterprise"])) {
+        $errors['enterprise'] = "Veuillez selectionner une entreprise";
+    }
+
     // Vérification si la case CGU a bien été cocher 
    
     if (!isset($_POST["cgu"])) {
@@ -55,55 +66,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($errors['cgu'])) {
         echo $errors['cgu'];
     }
+    $num = 1;
+    $photo= 3;
+    $enter = 2;
+    $describ = "balabla";
+    var_dump($errors);
+    if (empty($errors)){
+        $sql = 'INSERT INTO userprofil (user_validate, user_name, user_firstname, user_pseudo, user_describ, user_email, user_dateofbirth, user_password, user_photo, enterprise_id) VALUES (:validate, :nom, :prenom, :pseudo, :describ, :email, :ddn, :mot_de_passe, :photo, :enterprise_id)';
+        $query = $bdd->prepare($sql);
+        $query->bindParam(':validate',$num, PDO::PARAM_INT); 
+        $query->bindParam(':nom', $_POST['name']);
+        $query->bindParam(':prenom', $_POST['prenom']);
+        $query->bindParam(':pseudo',$_POST['pseudo']);
+        $query->bindParam(':describ', $describ, PDO::PARAM_STR);
+        $query->bindParam(':email', $_POST['email']);
+        $query->bindParam(':ddn', $dob);
+        $query->bindParam(':mot_de_passe', $_POST['password']);
+        $query->bindParam(':photo',$photo, PDO::PARAM_INT); 
+        $query->bindParam(':enterprise_id',$enter, PDO::PARAM_INT); 
     
-    $sql = 'INSERT INTO userprofil (user_name, user_firstname, user_pseudo, user_email, user_dateofbirth, user_password) VALUES (:nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe)';
-    $query = $bdd->prepare($sql);
-    $query->bindParam(':nom', $nom);
-    $query->bindParam(':prenom', $prenom);
-    $query->bindParam(':pseudo', $pseudo);
-    $query->bindParam(':email', $email);
-    $query->bindParam(':ddn', $dob);
-    $query->bindParam(':mot_de_passe', $mot_de_passe);
+        try {
+            $query->execute();
+            echo 'Utilisateur ajouté avec succès !';
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+        }
+    } 
 
-    try {
-        $query->execute();
-        echo 'Utilisateur ajouté avec succès !';
-    } catch (PDOException $e) {
-        echo 'Erreur : ' . $e->getMessage();
-    }
-} else {
-    // Redirection vers le formulaire si la requête n'est pas de type POST
-    header("Location: view-signup.php");
-    exit;
 }
-  
    
-
-
-    // Affichage des erreurs
-    // Si aucune erreur détectée
-    if (empty($errors)) {
-        // Afficher la synthèse des informations et le message de confirmation
-        $nom = $_POST['nom'];
-        $prenom = $_POST['prenom'];
-        $pseudo = $_POST['pseudo'];
-        $email = $_POST['email'];
-        $dob = $_POST['dob'];
-       
-
-        // Cacher le formulaire
-        $formHidden = true;
-
-        // Envoyer le mail de confirmation (simulation ici)
-        $message = "Bonjour $prenom $nom, votre inscription a bien été enregistrée.";
-        // Envoi du mail (à remplacer par votre code d'envoi de mail)
-        // mail($email, 'Confirmation d\'inscription', $message);
-
-        // Afficher la synthèse des informations et le message de confirmation
-        include('../views/view-summary.php');
-        exit; // Arrêter l'exécution du script
-    }
-
 ?>
 <?php
 // Contrôleur - Gestion de la logique métier

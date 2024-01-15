@@ -35,10 +35,10 @@
 
                     <form action="controller-signup.php" method="POST" novalidate>
                     <label for="nom">Nom:</label><br>
-                    <input type="text" id="nom" name="nom" value = "<?= isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '' ?>">
+                    <input type="text" id="nom" name="name" value = "<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
                     <span class="error">
-                    <?php if (isset($errors['nom'])) {
-                    echo $errors['nom'];
+                    <?php if (isset($errors['name'])) {
+                    echo $errors['name'];
                     } ?>
         </span><br>
 
@@ -76,7 +76,7 @@
 
         <label for="password">Mot de passe:</label><br>
         <input type="password" id="password" name="password">
-        <span class="error">
+        <span class="error text-danger">
             <?php if (isset($errors['password'])) {
                 echo $errors['password'];
             } ?>
@@ -84,16 +84,17 @@
 
         <label for="confirm_password">Confirmer le mot de passe:</label><br>
         <input type="password" id="confirm_password" name="confirm_password">
-        <span class="error">
+        <span class="error ">
             <?php if (isset($errors['confirm_password'])) {
                 echo $errors['confirm_password'];
             } ?>
-        </span><br>
+        </span><br><br>
+    <!-- isset permet de voir si la variable existe  -->
     
-    <label for="select">Selectionnez une entreprise: </label><br>
-    <select name="select">
-    <option value="afpa" selected>Afpa</option>
-    <option value="carrefour">Carrefour</option>
+    <select name="enterprise" id="entreprise">
+        <option value="selected" selected>Selectionner une entreprise</option>
+    <option value="2"<?= isset($_POST['enterprise']) && $_POST['enterprise'] == 2 ? 'selected' : ''?> >Afpa</option>
+    <option value="3"<?= isset($_POST['enterprise']) && $_POST['enterprise'] == 3 ? 'selected' : ''?>>Carrefour</option>
     </select>
 
         </span><br>
