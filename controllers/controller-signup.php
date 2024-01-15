@@ -3,6 +3,7 @@ require_once('../connect.php');
 // Vérification des données postées depuis le formulaire
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
     //declanche la logique 
+    var_dump($_POST);
   
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // je créer un tableau d'erreur vide 
@@ -66,24 +67,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($errors['cgu'])) {
         echo $errors['cgu'];
     }
-    $num = 1;
-    $photo= 3;
-    $enter = 2;
-    $describ = "balabla";
+  
+   
+   
+
+    // verification s'il n'y pas d'erreur, nous allons inscrire l'utilisateur
     var_dump($errors);
     if (empty($errors)){
-        $sql = 'INSERT INTO userprofil (user_validate, user_name, user_firstname, user_pseudo, user_describ, user_email, user_dateofbirth, user_password, user_photo, enterprise_id) VALUES (:validate, :nom, :prenom, :pseudo, :describ, :email, :ddn, :mot_de_passe, :photo, :enterprise_id)';
+        //  value (:value = marqueur nominatif)
+        $sql = 'INSERT INTO `userprofil` (`user_validate`, `user_name`, `user_firstname`, `user_pseudo`, `user_email`, `user_dateofbirth`, `user_password`, `enterprise_id`) VALUES (:validate, :nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe, :enterprise_id)';
+       //je prepare ma requete pour eviter les injection sql,  $bdd appelle la methode prepare 
         $query = $bdd->prepare($sql);
-        $query->bindParam(':validate',$num, PDO::PARAM_INT); 
-        $query->bindParam(':nom', $_POST['name']);
-        $query->bindParam(':prenom', $_POST['prenom']);
-        $query->bindParam(':pseudo',$_POST['pseudo']);
-        $query->bindParam(':describ', $describ, PDO::PARAM_STR);
-        $query->bindParam(':email', $_POST['email']);
-        $query->bindParam(':ddn', $dob);
-        $query->bindParam(':mot_de_passe', $_POST['password']);
-        $query->bindParam(':photo',$photo, PDO::PARAM_INT); 
-        $query->bindParam(':enterprise_id',$enter, PDO::PARAM_INT); 
+        //avec bindValue permet de mettre directement des valeurs sans crée de variable 
+        $query->bindValue(':validate',1, PDO::PARAM_INT); 
+        $query->bindValue(':nom', htmlspecialchars($_POST['name']), PDO::PARAM_STR);
+        $query->bindValue(':prenom', htmlspecialchars($_POST['prenom']),PDO::PARAM_STR);
+        $query->bindValue(':pseudo', htmlspecialchars($_POST['pseudo']),PDO::PARAM_STR);
+        
+        $query->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+        $query->bindValue(':ddn', $dob);
+        $query->bindValue(':mot_de_passe', password_hash($_POST['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
+         
+        $query->bindValue(':enterprise_id',2, PDO::PARAM_INT); 
     
         try {
             $query->execute();
