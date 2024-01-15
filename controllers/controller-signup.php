@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query->bindValue(':ddn', $dob);
         $query->bindValue(':mot_de_passe', password_hash($_POST['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
          
-        $query->bindValue(':enterprise_id',2, PDO::PARAM_INT); 
+        $query->bindValue(':enterprise_id',$_POST['enterprise'], PDO::PARAM_INT); 
     
         try {
             $query->execute();

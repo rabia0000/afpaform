@@ -91,7 +91,7 @@
         </span><br><br>
     <!-- isset permet de voir si la variable existe  -->
     
-    <select name="enterprise" id="entreprise">
+    <select name="enterprise" id="enterprise">
         <option value="selected" selected>Selectionner une entreprise</option>
     <option value="2"<?= isset($_POST['enterprise']) && $_POST['enterprise'] == 2 ? 'selected' : ''?> >Afpa</option>
     <option value="3"<?= isset($_POST['enterprise']) && $_POST['enterprise'] == 3 ? 'selected' : ''?>>Carrefour</option>
