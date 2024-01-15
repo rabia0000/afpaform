@@ -1,4 +1,5 @@
 <?php
+require_once ('../config.php');
 require_once('../connect.php');
 // Vérification des données postées depuis le formulaire
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
