@@ -13,10 +13,12 @@ class Userprofil
      * @param string $dob DDN de l'utilisateur
      * @param string $password Password de l'utilisateur
      * @param string $enterprise entreprise de l'utilisateur
+     * 
+     * @return void
      */
 
 
-    public function create(int $validate, string $name, string $lastname, string $pseudo, string $email, string $dob, string $password, string $enterprise)
+    public static function create(int $validate, string $name, string $lastname, string $pseudo, string $email, string $dob, string $password, string $enterprise)
     {
         //connexion à la bdd
         //on crée un nouvelle objet $bdd selon la classe PDO qui prendra des données 
@@ -26,8 +28,8 @@ class Userprofil
 
         $bdd = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        var_dump($bdd);
-        $validate = 1;
+
+
 
 
         //  value (:value = marqueur nominatif)

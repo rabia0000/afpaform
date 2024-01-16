@@ -1,6 +1,9 @@
 <?php
-require_once('../config.php');
-require_once('../connect.php');
+//models 
+
+require_once '../config.php';
+require_once '../models/userprofil.php';
+
 // Vérification des données postées depuis le formulaire
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
 //declanche la logique 
@@ -74,37 +77,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // verification s'il n'y pas d'erreur, nous allons inscrire l'utilisateur
     var_dump($errors);
     if (empty($errors)) {
-        //  value (:value = marqueur nominatif)
-        $sql = 'INSERT INTO `userprofil` (`user_validate`, `user_name`, `user_firstname`, `user_pseudo`, `user_email`, `user_dateofbirth`, `user_password`, `enterprise_id`) VALUES (:validate, :nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe, :enterprise_id)';
-        //je prepare ma requete pour eviter les injection sql,  $bdd appelle la methode prepare 
+        $validate = 1;
         $name = $_POST['name'];
         $lastname = $_POST['prenom'];
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
-        $dob = $_POST['ddn'];
+        $dob = $_POST['dob'];
         $password = $_POST['password'];
         $enterprise = $_POST['enterprise'];
-        $query = $bdd->prepare($sql);
-        //avec bindValue permet de mettre directement des valeurs sans crée de variable 
-        $query->bindValue(':validate', 1, PDO::PARAM_INT);
-        $query->bindValue(':nom', htmlspecialchars($_POST['name']), PDO::PARAM_STR);
-        $query->bindValue(':prenom', htmlspecialchars($_POST['prenom']), PDO::PARAM_STR);
-        $query->bindValue(':pseudo', htmlspecialchars($_POST['pseudo']), PDO::PARAM_STR);
 
-        $query->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
-        $query->bindValue(':ddn', $dob);
-        $query->bindValue(':mot_de_passe', password_hash($_POST['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
 
-        $query->bindValue(':enterprise_id', $_POST['enterprise'], PDO::PARAM_INT);
-
-        try {
-            $query->execute();
-            echo 'Utilisateur ajouté avec succès !';
-        } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
-        }
+        Userprofil::create($validate, $name, $lastname, $pseudo, $email, $dob, $password, $enterprise);
     }
 }
+
+
 
 ?>
 <?php
