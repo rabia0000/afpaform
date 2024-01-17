@@ -8,7 +8,9 @@ require_once '../models/userprofil.php';
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
 //declanche la logique 
 var_dump($_POST);
+$showform = true;
 
+// permet de lancer controle au submit du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // je créer un tableau d'erreur vide 
     $errors = [];
@@ -88,8 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         Userprofil::create($validate, $name, $lastname, $pseudo, $email, $dob, $password, $enterprise);
+        $showform = false;
     }
 }
+
 
 
 
@@ -100,5 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Vérifications et traitements du formulaire ici
 
 // Inclusion de la vue
+
 include_once('../views/view-signup.php');
+
+
 ?>

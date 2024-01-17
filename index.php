@@ -18,6 +18,5 @@
 // require_once('close.php');
 
 // Redirection vers le contrôleur
-header("Location: controllers/controller-signup.php");
+header("Location: controllers/controller-signin.php");
 exit;
-?>

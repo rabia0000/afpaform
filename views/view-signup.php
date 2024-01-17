@@ -8,7 +8,8 @@
     <title>Document</title>
     <style>
         /* Définir la hauteur de la page pour centrer le contenu */
-        html, body {
+        html,
+        body {
             height: 100%;
         }
 
@@ -17,115 +18,132 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #e0ffcd;
+            background-image: url('../assets/img/plantee.jpg');
+
+        }
+
+        .card-body {
+            background-color: #e0ffcd;
         }
     </style>
 </head>
 
-<body>
+<body class="">
     <!-- Header -->
-    <header>
-        <!-- Votre code pour l'en-tête -->
-    </header>
-<div class="container ">
-    <div class="row justify-content-center align-item-center">
-        <div class="col-md-6 h-75">
-            <div class="card shadow-lg">
-                <div class="card-body ">
-                    <h2 class="card-title text-center mb-4">Inscription</h2>
+    <?php
+    if ($showform) {
+    ?>
+        <form class="row" method="POST" action="../controllers/controller-signup.php" novalidate>
+            <header>
+                <!-- Votre code pour l'en-tête -->
+            </header>
+            <div class="container ">
+                <div class="row justify-content-center align-item-center">
+                    <div class="col-md-12 h-75">
+                        <div class="card shadow-lg">
+                            <div class="card-body  p-4">
+                                <h2 class="card-title text-center mb-4">Inscription</h2>
 
-                    <form action="controller-signup.php" method="POST" novalidate>
-                    <label for="nom">Nom:</label><br>
-                    <input type="text" id="nom" name="name" value = "<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
-                    <span class="error">
-                    <?php if (isset($errors['name'])) {
-                    echo $errors['name'];
-                    } ?>
-        </span><br>
+                                <form action="controller-signup.php" method="POST" novalidate>
+                                    <label for="nom">Nom:</label><br>
+                                    <input type="text" id="nom" name="name" value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+                                    <span class="error">
+                                        <?php if (isset($errors['name'])) {
+                                            echo $errors['name'];
+                                        } ?>
+                                    </span><br>
 
-        <label for="prenom">Prénom:</label><br>
-        <input type="text" id="prenom" name="prenom" value = "<?= isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '' ?>">
-        <span class="error">
-            <?php if (isset($errors['prenom'])) {
-                echo $errors['prenom'];
-            } ?>
-        </span><br>
+                                    <label for="prenom">Prénom:</label><br>
+                                    <input type="text" id="prenom" name="prenom" value="<?= isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '' ?>">
+                                    <span class="error">
+                                        <?php if (isset($errors['prenom'])) {
+                                            echo $errors['prenom'];
+                                        } ?>
+                                    </span><br>
 
-        <label for="pseudo">Pseudo:</label><br>
-        <input type="text" id="prenom" name="pseudo" value = "<?= isset($_POST['pseudo']) ? htmlspecialchars($_POST['pseudo']) : '' ?>">
-        <span class="error">
-            <?php if (isset($errors['pseudo'])) {
-                echo $errors['pseudo'];
-            } ?>
-        </span><br>
+                                    <label for="pseudo">Pseudo:</label><br>
+                                    <input type="text" id="prenom" name="pseudo" value="<?= isset($_POST['pseudo']) ? htmlspecialchars($_POST['pseudo']) : '' ?>">
+                                    <span class="error">
+                                        <?php if (isset($errors['pseudo'])) {
+                                            echo $errors['pseudo'];
+                                        } ?>
+                                    </span><br>
 
-        <label for="email">Courriel:</label><br>
-        <input type="email" id="email" name="email" value = "<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
-        <span class="error">
-            <?php if (isset($errors['email'])) {
-                echo $errors['email'];
-            } ?>
-        </span><br>
+                                    <label for="email">Courriel:</label><br>
+                                    <input type="email" id="email" name="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                                    <span class="error">
+                                        <?php if (isset($errors['email'])) {
+                                            echo $errors['email'];
+                                        } ?>
+                                    </span><br>
 
-        <label for="dob">Date de naissance:</label><br>
-        <input type="date" id="dob" name="dob" value = "<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
-        <span class="error">
-            <?php if (isset($errors['dob'])) {
-                echo $errors['dob'];
-            } ?>
-        </span><br>
+                                    <label for="dob">Date de naissance:</label><br>
+                                    <input type="date" id="dob" name="dob" value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
+                                    <span class="error">
+                                        <?php if (isset($errors['dob'])) {
+                                            echo $errors['dob'];
+                                        } ?>
+                                    </span><br>
 
-        <label for="password">Mot de passe:</label><br>
-        <input type="password" id="password" name="password">
-        <span class="error text-danger">
-            <?php if (isset($errors['password'])) {
-                echo $errors['password'];
-            } ?>
-        </span><br>
+                                    <label for="password">Mot de passe:</label><br>
+                                    <input type="password" id="password" name="password">
+                                    <span class="error text-danger">
+                                        <?php if (isset($errors['password'])) {
+                                            echo $errors['password'];
+                                        } ?>
+                                    </span><br>
 
-        <label for="confirm_password">Confirmer le mot de passe:</label><br>
-        <input type="password" id="confirm_password" name="confirm_password">
-        <span class="error ">
-            <?php if (isset($errors['confirm_password'])) {
-                echo $errors['confirm_password'];
-            } ?>
-        </span><br><br>
-    <!-- isset permet de voir si la variable existe  -->
-    
-    <select name="enterprise" id="enterprise">
-        <option value="selected" selected>Selectionner une entreprise</option>
-    <option value="2"<?= isset($_POST['enterprise']) && $_POST['enterprise'] == 2 ? 'selected' : ''?> >Afpa</option>
-    <option value="3"<?= isset($_POST['enterprise']) && $_POST['enterprise'] == 3 ? 'selected' : ''?>>Carrefour</option>
-    </select>
+                                    <label for="confirm_password">Confirmer le mot de passe:</label><br>
+                                    <input type="password" id="confirm_password" name="confirm_password">
+                                    <span class="error ">
+                                        <?php if (isset($errors['confirm_password'])) {
+                                            echo $errors['confirm_password'];
+                                        } ?>
+                                    </span><br><br><br>
 
-        </span><br>
-        <div class = "row">
-        <label for="cgu" class=>J'accepte les CGU : <input type="checkbox" name="cgu" id="cgu" required></label>
-        <div></div>
-        
+                                    <!-- isset permet de voir si la variable existe  -->
 
-        
-    <br>
-       
-    
-        
-        <div class="row ">
-        <input type="submit" value="S'enregistrer" class="btn btn-dark mt-3 ">
-        </div>
-       
-    </form>
+                                    <select name="enterprise" id="enterprise">
+                                        <option value="selected" selected>Selectionner une entreprise</option>
+                                        <option value="2" <?= isset($_POST['enterprise']) && $_POST['enterprise'] == 2 ? 'selected' : '' ?>>Afpa</option>
+                                        <option value="3" <?= isset($_POST['enterprise']) && $_POST['enterprise'] == 3 ? 'selected' : '' ?>>Carrefour</option>
+                                    </select>
+
+                                    </span><br><br><br>
+                                    <div class="row">
+                                        <label for="cgu" class=>J'accepte les CGU : <input type="checkbox" name="cgu" id="cgu" required></label>
+                                        <div></div>
+
+
+
+                                        <br>
+
+
+
+                                        <div class="row ">
+                                            <input type="submit" value="S'enregistrer" class="btn btn-dark mt-3 ">
+                                        </div>
+                                    <?php } else { ?>
+                                        <h2>Inscription réussie</h2>
+                                        <p><strong><em>Vous pouvez maintenant vous connecter.</em></strong></p>
+                                        <a href="../controllers/controller-signin.php" class="button">Connexion</a>
+                                    <?php } ?>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-    </div>
-</div>
 
-    <!-- Footer -->
-    <footer>
-        <!-- Votre code pour le pied de page -->
-    </footer>
+            <!-- Footer -->
+            <footer>
+                <!-- Votre code pour le pied de page -->
+            </footer>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 
 </html>
