@@ -7,7 +7,7 @@ require_once '../models/userprofil.php';
 // Vérification des données postées depuis le formulaire
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
 //declanche la logique 
-var_dump($_POST);
+// var_dump($_POST);
 $showform = true;
 
 // permet de lancer controle au submit du formulaire
@@ -33,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($_POST["pseudo"])) {
         $errors['pseudo'] = "pseudo obligatoire.";
+    } else if (Userprofil::checkPseudoExists($_POST["pseudo"])) {
+        $errors['pseudo'] = "Pseudo déjà utilisé";
     }
 
     // Vérification de l'email
@@ -40,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['email'] = "Champs obligatoire.";
     } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "L'adresse email est invalide.";
+    } else if (Userprofil::checkMailExists($_POST['email'])) {
+        $errors['email'] = 'Email déjà utilisé';
     }
 
     // Vérification de la date de naissance

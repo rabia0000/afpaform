@@ -1,6 +1,7 @@
 <?php
 
 require_once '../config.php';
+require_once '../models/userprofil.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,35 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "L'adresse email est invalide.";
     }
-}
-
-if (empty($errors)) {
-    try {
-
-        //connexion à la base de données avec PDO 
-        $bdd = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
-        //Parametre de connexion pour afficher les erreurs 
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        //Récupération des données du formulaire en utilisant la fonction filter_var : nettoye et valide les données d'entrée 
-        //utilisateur 
-        //filter_var(variable, filter, options)
-        // FILTER_SANITIZE_EMAIL : supprime les caractères non valide d'une adresse mail 
-        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-        // $emailRechercher = filter_var($_POST["email"]);
-
-
-        // Étape 1 : Requête SQL avec une requête préparée pour vérifier si l'e-mail existe
-        $requeteEmail = $bdd->prepare("SELECT * FROM userprofil WHERE user_email = :email");
-        $requeteEmail->bindParam(':email', $_POST["email"], PDO::PARAM_STR);
-        $requeteEmail->execute();
-
-        // Vérification si l'e-mail existe dans la base de données
-        $utilisateur = $requeteEmail->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo 'errors';
+    if (empty($errors)) {
+        if (!Userprofil::checkMailExists($_POST['email'])) {
+            $errors['email'] = "utilisateur inconnu ";
+        } else {
+            $errors['email'] = "L'utilisateur existe dans la bdd";
+        }
     }
 }
+
+
 
 var_dump($_POST);
 
