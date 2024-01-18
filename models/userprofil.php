@@ -130,4 +130,41 @@ class Userprofil
             die();
         }
     }
+
+
+    /**
+     * Methode permettant de récupérer les infos d'un utilisateur avec son mail comme paramètre
+     * 
+     * @param string $email Adresse mail de l'utilisateur
+     * 
+     * @return array Tableau associatif contenant les infos de l'utilisateur
+     */
+    public static function getInfos(string $email): array
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "SELECT * FROM `userprofil` WHERE `user_email` = :mail";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $bdd->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':mail', $email, PDO::PARAM_STR);
+
+            // on execute la requête
+            $query->execute();
+
+            // on récupère le résultat de la requête dans une variable
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            // on retourne le résultat
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
 }

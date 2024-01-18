@@ -32,6 +32,7 @@
                         <div class="card-body ">
                             <h2 class="card-title text-center mb-4">Page de connexion</h2>
                             <!-- EMAIL  -->
+
                             <div class="text-center fs-3">
                                 <label for="email">Votre Email:</label><br>
 
@@ -60,6 +61,8 @@
                             <div class="row ">
                                 <input type="submit" value="Me connecter" class="btn btn-dark mt-3 ">
                             </div>
+
+
 
                             <div></div>
                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

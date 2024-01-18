@@ -2,7 +2,7 @@
 
 require_once '../config.php';
 require_once '../models/userprofil.php';
-
+$showform = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
@@ -20,10 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['email'] = "L'adresse email est invalide.";
     }
     if (empty($errors)) {
+
         if (!Userprofil::checkMailExists($_POST['email'])) {
             $errors['email'] = "utilisateur inconnu ";
         } else {
-            $errors['email'] = "L'utilisateur existe dans la bdd";
+            //je recupère toutes les infos via la méthode getInfos()
+            $utilisateurInfos = Userprofil::getInfos($_POST['email']);
+            // Utilisation de password_verify pour le mdp
+            if (password_verify($_POST["password"], $utilisateurInfos['user_password'])) {
+                //ajout de la super global $_SESSION
+                $_SESSION['pseudo'] = $utilisateurInfos['user_pseudo'];
+                header('Location: controller-home.php');
+            } else {
+                $errors['connexion'] = 'Mauvais mots de passe';
+            }
         }
     }
 }
