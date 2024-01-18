@@ -22,11 +22,12 @@
     </style>
 </head>
 
+
 <body>
     <form class="row" method="POST" action="../controllers/controller-home.php" novalidate>
         <div class="justifiant-content-center">
             <div class="text-center my-3">
-                <h1>Bienvenue Bryan</h1>
+                <h1>Bienvenue <?php echo $pseudo ?></h1>
             </div>
             <div class="text-center">
                 <?php $date = date('d/m/Y') ?>
@@ -41,6 +42,9 @@
             </div>
             <div class='mt-3 text-center'>
                 <button type="button" class="btn btn-success">Consulter mes historiques de trajet</button>
+            </div>
+            <div class='mt-3 text-center'>
+                <a href="../controllers/controller-profil.php" class="btn btn-success">Mon Profil</a>
             </div>
             <div class='mt-3 text-center'>
                 <button type="button" class="btn btn-success">Se déconnecter</button>
