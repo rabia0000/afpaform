@@ -30,6 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($_POST["password"], $utilisateurInfos['user_password'])) {
                 //ajout de la super global $_SESSION
                 $_SESSION['pseudo'] = $utilisateurInfos['user_pseudo'];
+                $_SESSION['nom'] = $utilisateurInfos['user_name'];
+                $_SESSION['prenom'] = $utilisateurInfos['user_firstname'];
                 header('Location: controller-home.php');
             } else {
                 $errors['connexion'] = 'Mauvais mots de passe';

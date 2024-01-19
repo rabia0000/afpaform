@@ -9,6 +9,10 @@ include_once '../models/userprofil.php';
 
 // toute ta logique ^
 $pseudo = $_SESSION['pseudo'];
+$nom = $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];
+
+
 
 
 //views
