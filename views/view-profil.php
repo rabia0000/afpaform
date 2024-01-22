@@ -8,6 +8,11 @@
     <title>Accueil</title>
     <title>Document</title>
 </head>
+<style>
+    body {
+        font-family: 'Josefin Sans', sans-serif;
+    }
+</style>
 
 <body>
     <div class='text-center mb-5'>
@@ -21,6 +26,9 @@
 
             <h2 class='mb-3 fs-3'>Votre nom : <?php echo $nom ?></h1>
                 <h2 class='mb-3 fs-3'>Votre prenom : <?php echo $prenom ?></h1>
+                    <h2 class='mb-3 fs-3'>Votre date de naissance : <?php echo $ddn ?></h1>
+                        <h2 class='mb-3 fs-3'>Votre email : <?php echo $email ?></h1>
+                            <a href="../controllers/controller-home.php">Retour home</a>
 
     </div>
 </body>

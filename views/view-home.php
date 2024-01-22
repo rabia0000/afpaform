@@ -18,40 +18,45 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-image: url('../assets/img/forest.jpg');
         }
     </style>
 </head>
 
 
 <body>
-    <form class="row" method="POST" action="../controllers/controller-home.php" novalidate>
-        <div class="justifiant-content-center">
-            <div class="text-center my-3">
-                <h1>Bienvenue <?php echo $pseudo ?></h1>
-            </div>
-            <div class="text-center">
-                <?php $date = date('d/m/Y') ?>
-                <p><?php echo "Aujourd'hui nous sommes le " . $date ?></p>
-            </div>
-            <div class="text-center">
-                <p>Que voulez vous faire ?</p>
-            </div>
 
-            <div class=" text-center">
-                <button type="button" class="btn btn-success">Ajouter un trajet</button>
-            </div>
-            <div class='mt-3 text-center'>
-                <button type="button" class="btn btn-success">Consulter mes historiques de trajet</button>
-            </div>
-            <div class='mt-3 text-center'>
-                <a href="../controllers/controller-profil.php" class="btn btn-success">Mon Profil</a>
-            </div>
-            <div class='mt-3 text-center'>
-                <button type="button" class="btn btn-success">Se déconnecter</button>
-            </div>
+    <div class="justifiant-content-center">
+        <div class="text-center my-3">
+            <h1>Bienvenue <?php echo $pseudo ?></h1>
+        </div>
+        <div class="text-center">
+            <?php $date = date('d/m/Y') ?>
+            <p><?php echo "Aujourd'hui nous sommes le " . $date ?></p>
+        </div>
+        <div class="text-center">
+            <p>Que voulez vous faire ?</p>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <div class=" text-center">
+            <a href="../controllers/controller-ride.php" class="btn btn-success">Ajouter un trajet</button></a>
+        </div>
+
+        <div class='mt-3 text-center'>
+            <button type="button" class="btn btn-success">Consulter mes historiques de trajet</button>
+        </div>
+        <div class='mt-3 text-center'>
+            <a href="../controllers/controller-profil.php" class="btn btn-success">Mon Profil</a>
+        </div>
+        <div class='mt-3 text-center'>
+            <a href="../controllers/controller-signin.php">
+                <button type="button" class="btn btn-success">Se déconnecter</button>
+            </a>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

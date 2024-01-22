@@ -1,8 +1,10 @@
 <?php
 session_start();
+
+
 require_once '../config.php';
 require_once '../models/userprofil.php';
-$showform = true;
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
@@ -32,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['pseudo'] = $utilisateurInfos['user_pseudo'];
                 $_SESSION['nom'] = $utilisateurInfos['user_name'];
                 $_SESSION['prenom'] = $utilisateurInfos['user_firstname'];
+                $_SESSION['email'] = $utilisateurInfos['user_email'];
+                $_SESSION['ddn'] = $utilisateurInfos['user_dateofbirth'];
                 header('Location: controller-home.php');
             } else {
                 $errors['connexion'] = 'Mauvais mots de passe';
@@ -42,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-var_dump($_POST);
+// var_dump($_POST);
 
 
 
