@@ -3,7 +3,7 @@ class Ride
 {
 
     /**
-     * Methode permettant de crée un utilisateur
+     * Methode permettant d'entrer un trajet 
      * @param string $date date du trajet
      * @param string $distance distance du trajet
      * @param int $transport le type de transport
@@ -26,11 +26,11 @@ class Ride
 
 
         //  value (:value = marqueur nominatif)
-        $sql = 'INSERT INTO `ride` (`ride_date`, `user_distance`, `user_id` `user_transport`) VALUES (:date, :distance, :user, :transport)';
+        $sql = 'INSERT INTO `ride` (`ride_date`, `ride_distance`, `user_id`, `transport_id`) VALUES (:datee, :distance, :user, :transport)';
         //je prepare ma requete pour eviter les injection sql,  $bdd appelle la methode prepare 
         $query = $bdd->prepare($sql);
         //avec bindValue permet de mettre directement des valeurs sans crée de variable 
-        $query->bindValue(':date', $date, PDO::PARAM_STR);
+        $query->bindValue(':datee', $date, PDO::PARAM_STR);
         $query->bindValue(':distance', htmlspecialchars($distance), PDO::PARAM_INT);
         $query->bindValue(':user', htmlspecialchars($user), PDO::PARAM_INT);
         $query->bindValue(':transport', htmlspecialchars($transport), PDO::PARAM_INT);
