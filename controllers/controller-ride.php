@@ -39,8 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = 50;
         $transport = $_POST['transport'];
 
-
-
         Ride::create($date, $distance, $user, $transport);
     }
 }
