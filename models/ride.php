@@ -11,7 +11,7 @@ class Ride
      */
 
 
-    public static function create(string $date, int $distance, int $user, int $transport)
+    public static function create(string $date, int $distance, int $userId, int $transport)
     {
         //connexion à la bdd
         //on crée un nouvelle objet $bdd selon la classe PDO qui prendra des données 
@@ -32,14 +32,49 @@ class Ride
         //avec bindValue permet de mettre directement des valeurs sans crée de variable 
         $query->bindValue(':datee', $date, PDO::PARAM_STR);
         $query->bindValue(':distance', htmlspecialchars($distance), PDO::PARAM_INT);
-        $query->bindValue(':user', htmlspecialchars($user), PDO::PARAM_INT);
+        $query->bindValue(':user', htmlspecialchars($userId), PDO::PARAM_INT);
         $query->bindValue(':transport', htmlspecialchars($transport), PDO::PARAM_INT);
 
         try {
             $query->execute();
-            echo 'Utilisateur ajouté avec succès !';
+            echo 'Trajet ajouté avec succès !';
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
+        }
+    }
+    /**
+     * Methode permettant de récupérer les infos du trajet d'un utilisateur en récupérant son Id 
+     * 
+     * @param string $userId Id de l'utilisateur
+     * 
+     * @return array Tableau associatif contenant les infos du trajet de l'utilisateur
+     */
+    public static function getAllTrajets(int $userId): array
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "SELECT * FROM `ride` WHERE `user_id` = :user";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $bdd->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':user', $userId, PDO::PARAM_INT);
+
+            // on execute la requête
+            $query->execute();
+
+            // on récupère le résultat de la requête dans une variable //fech 1 ligne fetchAll plusieurs lignes
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // on retourne le résultat
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
         }
     }
 }

@@ -125,18 +125,27 @@
 
 
 
-                                        <div class="row ">
+                                        <div class="row justify-content-center">
                                             <input type="submit" value="S'enregistrer" class="btn btn-dark mt-3 ">
                                             <a href="../controllers/controller-signin.php">Déjà inscrit</a>
                                         </div>
                                     <?php } else { ?>
 
-                                        <div class="card-body p4">
-                                            <h2>Inscription réussie</h2>
-                                            <p><strong><em>Vous pouvez maintenant vous connecter.</em></strong></p>
+                                        <div class="row justify-content-center align-item-center">
+                                            <div class="col-md-12 h-75">
+                                                <div class="card shadow-lg">
+                                                    <div class="card-body ">
 
-                                            <a href="../controllers/controller-signin.php" class="button">Connexion</a>
+
+                                                        <h2>Inscription réussie</h2>
+                                                        <p><strong><em>Vous pouvez maintenant vous connecter.</em></strong></p>
+
+                                                        <a href="../controllers/controller-signin.php" class="button">Connexion</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     <?php } ?>
 
                                 </form>

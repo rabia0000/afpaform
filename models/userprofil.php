@@ -168,7 +168,3 @@ class Userprofil
         }
     }
 }
-
-class ride
-{
-}

@@ -1,10 +1,11 @@
 <?php
+
 session_start();
 
-echo '<pre>';
+
 var_dump($_SESSION);
 var_dump($_POST);
-echo '</pre>';
+
 require_once '../config.php';
 require_once '../models/ride.php';
 
@@ -36,12 +37,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $date = $_POST['date'];
         $distance = $_POST['distance'];
-        $user = $_SESSION['user'];
+        $userId = $_SESSION['user']['user_id'];
         $transport = $_POST['transport'];
 
-        Ride::create($date, $distance, $user, $transport);
+        Ride::create($date, $distance, $userId, $transport);
+
+        header('Location: controller-historique.php');
     }
 }
+
+
+
+
+
 
 
 

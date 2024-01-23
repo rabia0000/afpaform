@@ -53,7 +53,8 @@
         </div>
 
         <div class='mt-3 text-center'>
-            <button type="button" class="btn btn-success">Consulter mes historiques de trajet</button>
+            <a href="../controllers/controller-historique.php" class="btn btn-success">Consulter mes historiques de trajet
+            </a>
         </div>
         <div class='mt-3 text-center'>
             <a href="../controllers/controller-profil.php" class="btn btn-success">Mon Profil</a>
