@@ -9,7 +9,9 @@ include_once '../models/userprofil.php';
 
 // toute ta logique 
 
-$pseudo = $_SESSION['pseudo'];
+if (!$_SESSION['user']) {
+    header('Location: controller-signin.php');
+}
 
 
 //views

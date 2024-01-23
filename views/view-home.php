@@ -38,7 +38,7 @@
 
     <div class="card shadow justifiant-content-center p-5">
         <div class="text-center my-3 ">
-            <h1 class='fs-1'>Bienvenue <?php echo $pseudo ?></h1>
+            <h1 class='fs-1'>Bienvenue <?php echo $_SESSION['user']['user_pseudo'] ?></h1>
         </div>
         <div class="text-center fs-2">
             <?php $date = date('d/m/Y') ?>
@@ -59,7 +59,7 @@
             <a href="../controllers/controller-profil.php" class="btn btn-success">Mon Profil</a>
         </div>
         <div class='mt-3 text-center'>
-            <a href="../controllers/controller-signin.php">
+            <a href="../controllers/controller-deconnexion.php">
                 <button type="button" class="btn btn-success">Se déconnecter</button>
             </a>
         </div>

@@ -45,16 +45,16 @@
 
 
         <div class='text-center'>
-            <h2 class='mb-3 fs-3 text-secondary'>Votre pseudo : <div class='fs-2 text-dark'><?php echo $pseudo ?></div>
+            <h2 class='mb-3 fs-3 text-secondary'>Votre pseudo : <div class='fs-2 text-dark'><?php echo $_SESSION['user']['user_pseudo']; ?></div>
             </h2>
 
-            <h2 class='mb-3 fs-3 text-secondary'>Votre nom : <div class='fs-2 text-dark'><?php echo $nom ?></div>
+            <h2 class='mb-3 fs-3 text-secondary'>Votre nom : <div class='fs-2 text-dark'><?php echo $_SESSION['user']['user_name']; ?></div>
             </h2>
-            <h2 class='mb-3 fs-3 text-secondary'>Votre prenom : <div class='fs-2 text-dark'><?php echo $prenom ?></div>
+            <h2 class='mb-3 fs-3 text-secondary'>Votre prenom : <div class='fs-2 text-dark'><?php echo $_SESSION['user']['user_firstname']; ?></div>
             </h2>
-            <h2 class='mb-3 fs-3 text-secondary'>Votre date de naissance : <div class='fs-2 text-dark'><?php echo $ddn ?></div>
+            <h2 class='mb-3 fs-3 text-secondary'>Votre date de naissance : <div class='fs-2 text-dark'><?php echo $_SESSION['user']['user_dateofbirth']; ?></div>
             </h2>
-            <h2 class='mb-3 fs-3 text-secondary'>Votre email : <div class='fs-2 text-dark'> <?php echo $email ?></div>
+            <h2 class='mb-3 fs-3 text-secondary'>Votre email : <div class='fs-2 text-dark'> <?php echo $_SESSION['user']['user_email']; ?></div>
             </h2>
             <a href="../controllers/controller-home.php"><button type="button" class="btn btn-success">Retour à la page Home</button></a>
         </div>

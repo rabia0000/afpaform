@@ -8,13 +8,9 @@ require_once '../config.php';
 include_once '../models/userprofil.php';
 
 // toute ta logique ^
-$pseudo = $_SESSION['pseudo'];
-$nom = $_SESSION['nom'];
-$prenom = $_SESSION['prenom'];
-$email = $_SESSION['email'];
-$ddn = $_SESSION['ddn'];
-
-
+if (!$_SESSION['user']) {
+    header('Location: controller-signin.php');
+}
 
 
 //views
