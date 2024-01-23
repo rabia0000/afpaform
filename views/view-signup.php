@@ -19,9 +19,9 @@
 
         /* Centrer le contenu verticalement */
         body {
-            display: flex;
+            /* display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; */
             font-family: 'Josefin Sans', sans-serif;
             background-image: url('../assets/img/route.jpg');
 
@@ -44,7 +44,7 @@
             </header>
             <div class="container ">
                 <div class="row justify-content-center align-item-center">
-                    <div class="col-md-12 h-75">
+                    <div class="col-lg-4">
                         <div class="card shadow-lg">
                             <div class="card-body  p-4">
                                 <h2 class="card-title text-center mb-4 ">Inscription</h2>

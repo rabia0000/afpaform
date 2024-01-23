@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Accueil</title>
-    <title>Document</title>
+    <title>Trajet</title>
+
 </head>
 <style>
     body {
@@ -28,13 +28,14 @@
             /* Centrer le contenu verticalement */
             body {
                 background-image: url('../assets/img/forest.jpg');
-                display: flex;
+                /* display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: center; */
             }
 
-            .card-body {
+            .card {
                 background-color: #cdeabc;
+
             }
         </style>
         </head>
@@ -44,9 +45,9 @@
 
                 <div class="container ">
                     <div class="row justify-content-center align-item-center">
-                        <div class="col-md-12 h-75">
-                            <div class="card shadow-lg">
-                                <div class="card-body">
+                        <div class="col-lg-4">
+                            <div class="card shadow-lg ">
+                                <div class="card-body ">
 
 
                                     <!-- ENTRER LA DATE   -->
