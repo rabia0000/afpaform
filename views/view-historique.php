@@ -40,9 +40,15 @@
 
         <div class='text-center row'>
             <?php foreach ($trajets as $trajet) { ?>
-                <div class="rounded bg-light shadow pt-4 mb-2">
-                    <p><?= $trajet['ride_date'] ?></p>
-                    <p><?= $trajet['transport_type'] ?> : <?= $trajet['ride_distance'] ?>KM</p>
+                <div class="rounded bg-light shadow pt-4 mb-3">
+                    <p class="fs-4"><?= $trajet['ride_date'] ?></p>
+                    <p><?= $trajet['transport_type'] ?> : <?= $trajet['ride_distance'] ?> KM</p>
+                    <form action="../controllers/controller-confirmation_delete.php" method="post">
+                        <input type="hidden" name="ride_id" value="<?= $trajet['ride_id'] ?>">
+                        <input type="submit" class="btn btn-outline-danger mb-3" value="Supprimer">
+                    </form>
+
+
                 </div>
             <?php } ?>
             <a href="../controllers/controller-home.php"><button type="button" class="btn btn-success mt-4">Retour à la page Home</button></a>

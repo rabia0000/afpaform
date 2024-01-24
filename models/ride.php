@@ -77,4 +77,27 @@ class Ride
             die();
         }
     }
+
+    public static function deleteTrajet(int $rideId): void
+    {
+        try {
+            // Création d'un objet $db selon la classe PDO
+            $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "DELETE FROM `ride`  WHERE `ride_id` = :rideId";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $bdd->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':rideId', $rideId, PDO::PARAM_INT);
+
+            // on execute la requête
+            $query->execute();
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
 }
