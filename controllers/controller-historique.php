@@ -16,9 +16,7 @@ if (!$_SESSION['user']) {
 
 $trajets = Ride::getAllTrajets($_SESSION['user']['user_id']);
 
-echo '<pre>';
-var_dump($trajets);
-echo '</pre>';
+
 //views
 
 include_once '../views/view-historique.php';

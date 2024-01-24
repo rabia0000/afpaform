@@ -39,20 +39,13 @@
         </div>
 
         <div class='text-center row'>
-            <?php
-
-
-            foreach ($trajets as $trajet) {
-
-                echo "Date du dernier trajet:" . $trajet["ride_date"] . "\n";
-                echo "Distance: " . $trajet["ride_distance"] . " KM \n";
-                echo "Transport: " . $trajet["transport_id"] . "\n";
-                echo "\n";
-            }
-            ?>
-            <br>
-
-            <a href="../controllers/controller-home.php"><button type="button" class="btn btn-success">Retour à la page Home</button></a>
+            <?php foreach ($trajets as $trajet) { ?>
+                <div class="rounded bg-light shadow pt-4 mb-2">
+                    <p><?= $trajet['ride_date'] ?></p>
+                    <p><?= $trajet['transport_type'] ?> : <?= $trajet['ride_distance'] ?>KM</p>
+                </div>
+            <?php } ?>
+            <a href="../controllers/controller-home.php"><button type="button" class="btn btn-success mt-4">Retour à la page Home</button></a>
         </div>
     </div>
 </body>

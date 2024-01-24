@@ -8,8 +8,10 @@ session_start();
 
 require_once '../config.php';
 require_once '../models/ride.php';
+require_once '../models/transport.php';
 
-
+$transports = Transport::getAlltransport();
+// var_dump($transports);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
 

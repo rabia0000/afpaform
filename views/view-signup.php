@@ -51,7 +51,7 @@
 
                                 <form action="controller-signup.php" method="POST" novalidate>
                                     <label class="fs-5" for="nom">Nom:</label><br>
-                                    <input type="text" id="nom" name="name" value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+                                    <input class="col-12" type="text" id="nom" name="name" value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
                                     <span class="error">
                                         <?php if (isset($errors['name'])) {
                                             echo $errors['name'];
@@ -59,7 +59,7 @@
                                     </span><br>
 
                                     <label class="fs-5" for="prenom">Prénom:</label><br>
-                                    <input type="text" id="prenom" name="prenom" value="<?= isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '' ?>">
+                                    <input class="col-12" type="text" id="prenom" name="prenom" value="<?= isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '' ?>">
                                     <span class="error">
                                         <?php if (isset($errors['prenom'])) {
                                             echo $errors['prenom'];
@@ -67,7 +67,7 @@
                                     </span><br>
 
                                     <label class="fs-5" for="pseudo">Pseudo:</label><br>
-                                    <input type="text" id="prenom" name="pseudo" value="<?= isset($_POST['pseudo']) ? htmlspecialchars($_POST['pseudo']) : '' ?>">
+                                    <input class="col-12" type="text" id="prenom" name="pseudo" value="<?= isset($_POST['pseudo']) ? htmlspecialchars($_POST['pseudo']) : '' ?>">
                                     <span class="error">
                                         <?php if (isset($errors['pseudo'])) {
                                             echo $errors['pseudo'];
@@ -75,7 +75,7 @@
                                     </span><br>
 
                                     <label class="fs-5" for="email">Courriel:</label><br>
-                                    <input type="email" id="email" name="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                                    <input class="col-12" type="email" id="email" name="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
                                     <span class="error">
                                         <?php if (isset($errors['email'])) {
                                             echo $errors['email'];
@@ -83,7 +83,7 @@
                                     </span><br>
 
                                     <label class="fs-5" for="dob">Date de naissance:</label><br>
-                                    <input type="date" id="dob" name="dob" value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
+                                    <input class="col-12" type="date" id="dob" name="dob" value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
                                     <span class="error">
                                         <?php if (isset($errors['dob'])) {
                                             echo $errors['dob'];
@@ -91,7 +91,7 @@
                                     </span><br>
 
                                     <label class="fs-5" for="password">Mot de passe:</label><br>
-                                    <input type="password" id="password" name="password">
+                                    <input class="col-12" type="password" id="password" name="password">
                                     <span class="error text-danger">
                                         <?php if (isset($errors['password'])) {
                                             echo $errors['password'];
@@ -99,7 +99,7 @@
                                     </span><br>
 
                                     <label class="fs-5" for="confirm_password">Confirmer le mot de passe:</label><br>
-                                    <input type="password" id="confirm_password" name="confirm_password">
+                                    <input class="col-12" type="password" id="confirm_password" name="confirm_password">
                                     <span class="error ">
                                         <?php if (isset($errors['confirm_password'])) {
                                             echo $errors['confirm_password'];
@@ -108,11 +108,14 @@
 
                                     <!-- isset permet de voir si la variable existe  -->
 
-                                    <select class="fs-4" name="enterprise" id="enterprise">
+                                    <select class="fs-4 col-12 text-center" name="enterprise" id="enterprise">
                                         <option value="selected" selected>Selectionner une entreprise</option>
-                                        <option value="2" <?= isset($_POST['enterprise']) && $_POST['enterprise'] == 2 ? 'selected' : '' ?>>Afpa</option>
-                                        <option value="3" <?= isset($_POST['enterprise']) && $_POST['enterprise'] == 3 ? 'selected' : '' ?>>Carrefour</option>
+                                        <?php foreach ($enterprises as $enterprise) { ?>
+                                            <option value="<?= $enterprise['enterprise_id'] ?>"><?= $enterprise['enterprise_name'] ?></option>
+                                        <?php } ?>
                                     </select>
+
+
 
                                     </span><br><br><br>
                                     <div class="row">

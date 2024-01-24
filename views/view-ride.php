@@ -71,11 +71,9 @@
                                             <!-- MODE DE TRANSPORT -->
                                             <select class="fs-4" name="transport" id="transport">
                                                 <option value="selected" selected>Selectionnez un mode de transport</option>
-                                                <option value="1" <?= isset($_POST['transport']) && $_POST['transport'] == 1 ? 'selected' : '' ?>>Marche</option>
-                                                <option value="2" <?= isset($_POST['transport']) && $_POST['transport'] == 2 ? 'selected' : '' ?>>Velo</option>
-                                                <option value="3" <?= isset($_POST['transport']) && $_POST['transport'] == 3 ? 'selected' : '' ?>>Roller </option>
-                                                <option value="4" <?= isset($_POST['transport']) && $_POST['transport'] == 4 ? 'selected' : '' ?>>Skate </option>
-                                                <option value="5" <?= isset($_POST['transport']) && $_POST['transport'] == 5 ? 'selected' : '' ?>>Trotinette </option>
+                                                <?php foreach ($transports as $transport) { ?>
+                                                    <option class="text-dark" value="<?= $transport['transport_id'] ?>"><?= $transport['transport_type'] ?></option>
+                                                <?php } ?>
                                             </select>
                                             <br>
 

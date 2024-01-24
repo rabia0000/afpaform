@@ -3,13 +3,14 @@
 // var_dump($_POST);
 require_once '../config.php';
 require_once '../models/userprofil.php';
+require_once '../models/enterprise.php';
 
 // Vérification des données postées depuis le formulaire
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
 //declanche la logique 
 // var_dump($_POST);
 $showform = true;
-
+$enterprises = Enterprise::getAllEnterprise();
 // permet de lancer controle au submit du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // je créer un tableau d'erreur vide 
@@ -61,10 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['password'] = "Le mot de passe doit comporter au moins 8 caractères et correspondre.";
     }
 
-    //veriffication du select 
-    if (!isset($_POST["enterprise"])) {
-        $errors['enterprise'] = "Veuillez selectionner une entreprise";
-    }
+    //verification du l'existance de l'enterprise  
+
+
+
+
+
 
     // Vérification si la case CGU a bien été cocher 
 
