@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// var_dump($_SESSION); /// pour check si c good :)
+var_dump($_SESSION['user']); /// pour check si c good :)
 //config
 require_once '../config.php';
 // models

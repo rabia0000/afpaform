@@ -142,11 +142,11 @@ class Userprofil
     public static function getInfos(string $email): array
     {
         try {
-            // Création d'un objet $db selon la classe PDO
+            // Création d'un objet $bdd selon la classe PDO
             $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
 
             // stockage de ma requete dans une variable
-            $sql = "SELECT * FROM `userprofil` WHERE `user_email` = :mail";
+            $sql = "SELECT * FROM `userprofil` NATURAL JOIN `enterprise` WHERE `user_email` = :mail";
 
             // je prepare ma requête pour éviter les injections SQL
             $query = $bdd->prepare($sql);
@@ -162,6 +162,38 @@ class Userprofil
 
             // on retourne le résultat
             return $result;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            die();
+        }
+    }
+
+    public static function updateInfos(int $userId, string $nom, string $prenom, string $pseudo, string $describ, string $ddn, string $email, int $enterpriseId, string $photo)
+    {
+        try {
+            // Création d'un objet $bdd selon la classe PDO
+            $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
+
+            // stockage de ma requete dans une variable
+            $sql = "UPDATE `userprofil`  SET  `user_name` = :nom, `user_firstname` = :prenom,`user_pseudo`= :pseudo, `user_describ`= :describ, `user_dateofbirth` = :ddn, `user_email`= :email, `enterprise_id`= :enterprise_id, `user_photo`= :photo WHERE `user_id` = :user_id";
+
+            // je prepare ma requête pour éviter les injections SQL
+            $query = $bdd->prepare($sql);
+
+            // on relie les paramètres à nos marqueurs nominatifs à l'aide d'un bindValue
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+            $query->bindValue(':nom', $nom, PDO::PARAM_STR);
+            $query->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+            $query->bindValue(':ddn', $ddn, PDO::PARAM_STR);
+            $query->bindValue(':email', $email, PDO::PARAM_STR);
+            $query->bindValue(':enterprise_id', $enterpriseId,  PDO::PARAM_INT);
+            $query->bindValue(':photo', $photo,  PDO::PARAM_STR);
+            $query->bindValue(':describ', $describ, PDO::PARAM_STR);
+            $query->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+
+            // on execute la requête
+            $query->execute();
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
             die();
