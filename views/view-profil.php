@@ -28,8 +28,13 @@
 
     .card {
         background-color: #cdeabc;
+
     }
-</style>
+
+    img {
+        height: 35%;
+        width: 35%;
+    }
 </style>
 
 <body>
@@ -40,11 +45,14 @@
     <div class="card shadow justifiant-content-center p-5">
         <div class="text-center my-3 ">
             <h1>Votre Profil</h1>
+            <div>
+                <img src="../assets/photo/<?= $_SESSION['user']['user_photo'] ?>" alt="">
+            </div>
         </div>
         <div class='text-center'>
             <h2 class='mb-3 fs-3 text-secondary'>Votre photo profil : <div class='fs-2 text-dark'> <?= $_SESSION['user']['user_photo']; ?></div>
             </h2>
-            <h2 class='mb-3 fs-3 text-secondary'>Votre pseudo : <div class='fs-2 text-dark'><?php echo $_SESSION['user']['user_pseudo']; ?>
+            <h2 class='mb-3 fs-3 text-secondary'>Votre pseudo : <div class='fs-2 text-dark'><?= $_SESSION['user']['user_pseudo']; ?>
                     <div col=2></div>
                 </div>
             </h2>

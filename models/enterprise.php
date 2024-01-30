@@ -6,11 +6,11 @@ class Enterprise
     /**
      * Methode permettant d'afficher toute les entreprises
      
-     * @return void
+     * @return array
      */
 
 
-    public static function getAllEnterprise()
+    public static function getAllEnterprise(): array
     {
 
         try {

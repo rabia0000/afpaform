@@ -73,15 +73,15 @@
                             <input class="col-12" type="date" id="dob" name="dob" value="<?= $_SESSION['user']['user_dateofbirth'] ?>">
 
                             <select class="fs-4 col-12 text-center" name="enterprise" id="enterprise"><br>
-                                <option value="selected" selected>Selectionner une entreprise</option>
-                                <?php foreach ($enterprises as $enterprise) { ?>
-                                    <option value="<?= $_SESSION['user']['enterprise_id'] ?>"><?= $_SESSION['user']['enterprise_name'] ?></option>
+                                <option value="" disabled selected>Selectionner une entreprise</option>
+                                <?php foreach (Enterprise::getAllEnterprise() as $enterprise) { ?>
+                                    <option value="<?= $enterprise['enterprise_id']  ?>" <?= $enterprise['enterprise_id'] = $_SESSION['user']['enterprise_id'] ? 'selected' : '';  ?>><?= $enterprise['enterprise_name'] ?></option>
                                 <?php } ?>
                             </select>
 
 
                             <label class="fs-5" for="dob">Description:</label><br>
-                            <textarea cols="30" rows="10" name="describ" value="<?= $_SESSION['user']['user_describ'] ?>"></textarea>
+                            <textarea cols="30" rows="10" name="describ"><?= $_SESSION['user']['user_describ'] ?></textarea>
 
 
                             <!-- isset permet de voir si la variable existe  -->
@@ -95,6 +95,7 @@
 
                             <br>
                             <button>Modifier</button>
+                            <a class="btn" href="../controllers/controller-profil.php">Annuler</a>
 
 
 

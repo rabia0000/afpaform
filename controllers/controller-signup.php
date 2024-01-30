@@ -9,7 +9,7 @@ require_once '../models/enterprise.php';
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
 //declanche la logique 
 // var_dump($_POST);
-$showform = true;
+$showform = false;
 $enterprises = Enterprise::getAllEnterprise();
 // permet de lancer controle au submit du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -94,9 +94,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dob = $_POST['dob'];
         $password = $_POST['password'];
         $enterprise = $_POST['enterprise'];
+        $photo = "default.png";
 
 
-        Userprofil::create($validate, $name, $lastname, $pseudo, $email, $dob, $password, $enterprise);
+        Userprofil::create($validate, $name, $lastname, $pseudo, $email, $dob, $password, $photo, $enterprise);
         $showform = false;
     }
 }

@@ -7,6 +7,7 @@ require_once '../config.php';
 require_once '../models/userprofil.php';
 require_once '../models/enterprise.php';
 
+
 // detecte un submit du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $ddn = $_POST['dob'];
     $describ = $_POST['describ'];
-    $enterpriseId = "2";
+    $enterpriseId = $_POST['enterprise'];
     $userId = $_SESSION['user']['user_id'];
     $photo = $_FILES['photo']['name'];
 

@@ -33,7 +33,7 @@ class Userprofil
 
 
         //  value (:value = marqueur nominatif)
-        $sql = 'INSERT INTO `userprofil` (`user_validate`, `user_name`, `user_firstname`, `user_pseudo`, `user_email`, `user_dateofbirth`, `user_password`, `user_photo, `enterprise_id`) VALUES (:validate, :nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe, :photo, :enterprise_id)';
+        $sql = 'INSERT INTO `userprofil` (`user_validate`, `user_name`, `user_firstname`, `user_pseudo`, `user_email`, `user_dateofbirth`, `user_password`, `user_photo`, `enterprise_id`) VALUES (:validate, :nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe, :photo, :enterprise_id)';
         //je prepare ma requete pour eviter les injection sql,  $bdd appelle la methode prepare 
         $query = $bdd->prepare($sql);
         //avec bindValue permet de mettre directement des valeurs sans crée de variable 
