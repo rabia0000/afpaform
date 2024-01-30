@@ -18,7 +18,7 @@ class Userprofil
      */
 
 
-    public static function create(int $validate, string $name, string $lastname, string $pseudo, string $email, string $dob, string $password, string $enterprise)
+    public static function create(int $validate, string $name, string $lastname, string $pseudo, string $email, string $dob, string $password, string $photo, string $enterprise)
     {
         //connexion à la bdd
         //on crée un nouvelle objet $bdd selon la classe PDO qui prendra des données 
@@ -33,7 +33,7 @@ class Userprofil
 
 
         //  value (:value = marqueur nominatif)
-        $sql = 'INSERT INTO `userprofil` (`user_validate`, `user_name`, `user_firstname`, `user_pseudo`, `user_email`, `user_dateofbirth`, `user_password`, `enterprise_id`) VALUES (:validate, :nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe, :enterprise_id)';
+        $sql = 'INSERT INTO `userprofil` (`user_validate`, `user_name`, `user_firstname`, `user_pseudo`, `user_email`, `user_dateofbirth`, `user_password`, `user_photo, `enterprise_id`) VALUES (:validate, :nom, :prenom, :pseudo, :email, :ddn, :mot_de_passe, :photo, :enterprise_id)';
         //je prepare ma requete pour eviter les injection sql,  $bdd appelle la methode prepare 
         $query = $bdd->prepare($sql);
         //avec bindValue permet de mettre directement des valeurs sans crée de variable 
@@ -45,7 +45,7 @@ class Userprofil
         $query->bindValue(':email', $email, PDO::PARAM_STR);
         $query->bindValue(':ddn', $dob);
         $query->bindValue(':mot_de_passe', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-
+        $query->bindValue(':photo', $photo, PDO::PARAM_STR);
         $query->bindValue(':enterprise_id', $enterprise, PDO::PARAM_INT);
 
         try {
@@ -171,7 +171,7 @@ class Userprofil
     public static function updateInfos(int $userId, string $nom, string $prenom, string $pseudo, string $describ, string $ddn, string $email, int $enterpriseId, string $photo)
     {
         try {
-            // Création d'un objet $bdd selon la classe PDO
+            // Création d'un objet $bdd selon la classe PDO permet de se connecter a la bdd
             $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
 
             // stockage de ma requete dans une variable
