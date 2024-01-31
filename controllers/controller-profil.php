@@ -13,7 +13,7 @@ if (!$_SESSION['user']) {
     header('Location: controller-signin.php');
 }
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 //views
 
 include_once '../views/view-profil.php';

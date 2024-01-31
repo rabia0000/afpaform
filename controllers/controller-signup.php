@@ -9,7 +9,7 @@ require_once '../models/enterprise.php';
 // $_SERVER super globals affiche toute les informations nottaments resquest_method 
 //declanche la logique 
 // var_dump($_POST);
-$showform = false;
+$showform = true;
 $enterprises = Enterprise::getAllEnterprise();
 // permet de lancer controle au submit du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

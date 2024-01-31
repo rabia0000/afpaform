@@ -43,8 +43,13 @@
                 <div class="rounded bg-light shadow pt-4 mb-3">
                     <p class="fs-4"><?= $trajet['ride_date'] ?></p>
                     <p><?= $trajet['transport_type'] ?> : <?= $trajet['ride_distance'] ?> KM</p>
-                    <form action="../controllers/controller-confirmation_delete.php" method="post">
+
+                    <!-- delete le trajet de type "submit" reload de page automatiquement on va alors recupéerer l'id du trajet qu'on recup a l'aide dinput qui on des names  
+                action vide on reste sur la meme page -->
+                    <form action="../controllers/controller-confirmation_delete.php" method="POST">
+                        <!-- pour ne pas voir l'id ride dans le DOM on crée un type = "hidden" -->
                         <input type="hidden" name="ride_id" value="<?= $trajet['ride_id'] ?>">
+                        <!-- submit permet d'envoyer le formulaire -->
                         <input type="submit" class="btn btn-outline-danger mb-3" value="Supprimer">
                     </form>
 

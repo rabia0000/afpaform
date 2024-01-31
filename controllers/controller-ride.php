@@ -12,8 +12,8 @@ require_once '../models/transport.php';
 
 $transports = Transport::getAlltransport();
 // var_dump($transports);
+// $_SERVER["REQUEST_METHOD"] = "POST" on souhaite qu'au chargement de la page rien ne se passe, on declenchera la logique que si  le formulaire est envoyé
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $errors = [];
 
     // Vérification du mot de passe
 
