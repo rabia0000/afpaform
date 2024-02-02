@@ -81,6 +81,7 @@ class Ride
     public static function deleteTrajet(int $rideId): void
     {
         try {
+
             // Création d'un objet $db selon la classe PDO
             $bdd = new PDO("mysql:host=localhost;dbname=" . DBNAME, DBUSERNAME, DBPASSWORD);
 

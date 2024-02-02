@@ -100,6 +100,16 @@
 
 
 
+                            <!-- delete le trajet de type "submit" reload de page automatiquement on va alors recupéerer l'id du trajet qu'on recup a l'aide dinput qui on des names  
+                action vide on reste sur la meme page -->
+                            <form action="../controllers/controller-confirmationDelete_user.php" method="POST">
+                                <!-- pour ne pas voir l'id ride dans le DOM on crée un type = "hidden" -->
+                                <input type="hidden" name="user_id" value="<?= Userprofil::deleteUser('user_Id') ?>">
+                                <!-- submit permet d'envoyer le formulaire -->
+                                <input type="submit" class="btn btn-outline-danger mb-3" value="Supprimer">
+                            </form>
+
+
 
     </form>
     </div>
